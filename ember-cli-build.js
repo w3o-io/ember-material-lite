@@ -8,6 +8,10 @@ module.exports = function(defaults) {
       includePaths: ['bower_components/material-design-lite/src']
     }
   });
+
+  app.import('bower_components/material-design-lite/src/images/tick-mask.svg', {destDir: '/images'});
+  app.import('bower_components/material-design-lite/src/images/tick.svg', {destDir: '/images'});
+  
   app.options.snippetPaths = ['tests/dummy/app/templates/snippets'];
   app.options.snippetSearchPaths = ['tests/dummy', 'app', 'addon'];
   /*
