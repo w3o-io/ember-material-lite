@@ -49,8 +49,6 @@
     "ember-truth-helpers": "~1.2.0",
     "ember-try": "^0.2.2",
     "loader.js": "^4.0.3",
-
-    "emberx-select": "2.1.2"
   },
   "keywords": [
     "ember-addon"

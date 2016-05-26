@@ -1,31 +1,77 @@
 import Ember from 'ember';
+import ParentComponentSupport from 'ember-composability/mixins/parent-component-support';
+import layout from '../templates/components/mdl-dropdown';
+import computed from 'ember-new-computed';
 
-export default Ember.Component.extend({
-	tagName: '',
+export default Ember.Component.extend(ParentComponentSupport, {
+	/*
+		Inject imported template handlebars to component usinglayout 
+	*/
+  layout,
+  classNames: ["mdl-textfield", "mdl-js-textfield"],
 
-	disabled: null,
-  	multiple: null,
-  	tabindex: 0,
+  /*
+		ClassName prefix to be compiled. Currently using Material Design Lite mdl-menu class styling
+  */
+  _primaryClassNameString: 'mdl-menu',
 
-	actions:{
-		action: function(value, option) {
-		    this.sendAction('action', value, option);
-		},
+  didInsertElement() {
+    this._super(...arguments);
+    const mdldropdown = new window.MaterialMenu(this.$('ul')[0]);
+    this.set('_mdlComponent', mdldropdown);
+  },
 
-		onchange: function(option, value, event) {
-		    this.sendAction('onchange', option, value, event);
-		},
+  /*
+		Set Unique ID to the component for associating input-text and dropdown-menu-container
+  */
+  _buttonId: computed('elementId', {
+    get() {
+      return `${this.get('elementId')}-button`;
+    }
+  }),
 
-		onclick: function(option, value, event) {
-		    this.sendAction('onclick', option, value, event);
-		},
+  /*
+		Declare options object to store option associated on mdl-dropdown-option
+  */
+  options: Ember.computed(function() {
+    return Ember.A();
+  }),
 
-		onblur: function(option, value, event) {
-		    this.sendAction('onblur', option, value, event);
-		},
+  /*
+		Update value and label of the component
+  */
+  updateValue(label, value){
+    this.set('label', label);
+    this.set('value', value);
+  },
 
-		onfocusout: function(option, value, event) {
-		    this.sendAction('onfocusout', option, value, event);
-		}
-	}	
+  /*
+		Bubble action to route when one of the associated mdl-dropdown-option clicked
+  */
+  bubbleAction(value){
+    this.sendAction('action', value);
+  },
+
+  /*
+		Pool options associated to the component, and set default value when component initialized;
+  */
+  registerOption(option) {
+  	if(this.get('value') === option.value){
+  		this.updateValue(option.label, option.value);
+  	}
+
+    this.get('options').addObject(option);
+  },
+
+  /*
+		Remove options when component destroyed (?)
+  */
+  unregisterOption(option) {
+    this.get('options').removeObject(option);
+
+    // We don't want to update the value if we're tearing the component down.
+    if (!this.get('isDestroying')) {
+      this.updateValue();
+    }
+  }
 });
