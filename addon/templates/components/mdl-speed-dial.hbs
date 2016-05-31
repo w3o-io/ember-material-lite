@@ -1,0 +1,11 @@
+<div class="mdl-speed-dial__options">
+  {{yield (hash
+    option=(component "mdl-speed-dial-item")
+  )}}
+</div>
+
+<button class="mdl-speed-dial__main-fab mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  {{#if icon}}
+  <i class="material-icons mdl-speed-dial_main-fab-icon mdl-speed-dial_main-fab-icon--primary">{{icon}}</i>
+  {{/if}}
+</button>
