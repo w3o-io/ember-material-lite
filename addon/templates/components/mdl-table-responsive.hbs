@@ -1,0 +1,17 @@
+<div class="table-responsive-vertical shadow-z-1">
+  <table class="table table-hover table-mc-light-blue">
+    <thead>
+      <tr>
+      	{{#each headers as |header|}}
+        	<th>{{{header.label}}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+
+    <tbody>
+      {{yield (hash
+			  option=(component "mdl-dropdown-responsive-cell" table=this)
+			)}}
+    </tbody>
+  </table>
+</div>
