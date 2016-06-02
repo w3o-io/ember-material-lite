@@ -11,6 +11,7 @@ module.exports = function(defaults) {
 
   app.import('bower_components/material-design-lite/src/images/tick-mask.svg', {destDir: '/images'});
   app.import('bower_components/material-design-lite/src/images/tick.svg', {destDir: '/images'});
+  app.import('bower_components/material-design-lite/material.min.js');
   
   app.options.snippetPaths = ['tests/dummy/app/templates/snippets'];
   app.options.snippetSearchPaths = ['tests/dummy', 'app', 'addon'];
