@@ -17,5 +17,9 @@ export default BaseToggleComponent.extend({
     this.set('_mdlComponent', mdlradio);
   },
 
+  click() {
+    this.sendAction('action', this.get('value'));
+  },
+
   _defaultName: 'default'
 });
