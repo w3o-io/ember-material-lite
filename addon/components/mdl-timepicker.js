@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   		If not available in other option, set string value to null
 		*/
 		if(typeof this.get('value').getMonth === 'function'){
-			this.set('stringValue', this.get('value').getHours() + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
+			this.set('stringValue', ("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
 			this.set('dateContainer', this.get('value'));
 			this.set('type', 'date');
 		}
@@ -57,7 +57,7 @@ export default Ember.Component.extend({
 			if(this.get('type') === 'date'){
 				this.get('dateContainer').setHours(parseInt(this.get('stringValue').substring(0,2)));
 				this.get('dateContainer').setMinutes(parseInt(this.get('stringValue').substring(3,5)));
-				this.set('value', this.get('dateContainer'));
+				this.set('value', new Date(this.get('dateContainer')));
 			}
 			else if (this.get('type') === 'string'){
 				this.set('value', this.get('stringValue'));
