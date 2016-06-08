@@ -1,18 +1,26 @@
-.mdl-dropdown__height{
+.mdl-dropdown__height {
 	height: 60px !important;
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
 }
 
-.mdl-dropdown__arrow{
+.mdl-dropdown__arrow {
 	bottom: 30px !important;
 	left: 272px !important;
 }
 
-.mdl-dropdown__container{
+.mdl-dropdown__container {
 	width: 300px !important;
 }
 
-.background-red{
+.background-red {
 	background-color: red;
+}
+
+.mdl-menu {
+	top: 2rem !important;
+}
+
+.mdl-menu__outline {
+	top: 2rem !important;
 }

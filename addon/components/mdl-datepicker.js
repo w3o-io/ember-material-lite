@@ -9,11 +9,25 @@ export default Ember.Component.extend({
 	classNames: ["mdl-textfield", "mdl-js-textfield"],
 
 	/*
+		Determine input to be date type or datetime format
+	*/
+	type: 'date',
+
+	/*
 		Normalize Value to string format.
-		Input Type Date only read and produce stringified date
+		Input Type Date and Datetime only read and produce stringified date
 	*/
 	didReceiveAttrs() {
-		this.set('stringValue', this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2));
+		var stringifiedDate;
+
+		if(this.get('type') === 'date'){
+			stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2);	
+		}
+		else if(this.get('type') === 'datetime-local'){
+			stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2)+'T'+("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2);	
+		}
+
+		this.set('stringValue', stringifiedDate);
 	},
 
 	actions:{
@@ -21,7 +35,13 @@ export default Ember.Component.extend({
   		Normalize string value to date format when returned to original value
 		*/
 		normalizeValue() {
-			this.set('value', new Date(this.get('stringValue')));
+			var parsedDate = new Date(this.get('stringValue'));
+
+			if(this.get('type') === 'datetime-local'){
+				parsedDate.setHours(parsedDate.getHours() + (parsedDate.getTimezoneOffset()/60));	
+			}			
+
+			this.set('value', parsedDate);
 		}
 	}
 });
