@@ -20,12 +20,14 @@ export default Ember.Component.extend({
 	didReceiveAttrs() {
 		var stringifiedDate;
 
-		if(this.get('type') === 'date'){
-			stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2);	
-		}
-		else if(this.get('type') === 'datetime-local'){
-			stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2)+'T'+("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2);	
-		}
+		if(!Ember.isEmpty(this.get('value'))){
+			if(this.get('type') === 'date'){
+				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2);	
+			}
+			else if(this.get('type') === 'datetime-local'){
+				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2)+'T'+("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2);	
+			}
+		}		
 
 		this.set('stringValue', stringifiedDate);
 	},
