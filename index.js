@@ -19,6 +19,7 @@ module.exports = {
     app.import(app.bowerDirectory + '/material-design-lite/src/radio/radio.js');
     app.import(app.bowerDirectory + '/material-design-lite/src/ripple/ripple.js');
     app.import(app.bowerDirectory + '/material-design-lite/src/slider/slider.js');
+    app.import(app.bowerDirectory + '/material-design-lite/src/snackbar/snackbar.js');
     app.import(app.bowerDirectory + '/material-design-lite/src/spinner/spinner.js');
     app.import(app.bowerDirectory + '/material-design-lite/src/switch/switch.js');
     app.import(app.bowerDirectory + '/material-design-lite/src/tabs/tabs.js');

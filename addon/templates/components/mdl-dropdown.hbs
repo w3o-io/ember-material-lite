@@ -1,10 +1,12 @@
-<span id={{_buttonId}}>
-    <input class="mdl-textfield__input" type="text" id={{_buttonId}} readonly=true value={{label}}>
-    <i class="mdl-dropdown__arrow mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-</span>
+<span class='mdl-dropdown'>
+	<span id={{_buttonId}}>
+	  <input class="mdl-textfield__input" type="text" id={{_buttonId}} readonly=true value={{label}}>
+	  <i class="mdl-dropdown__arrow mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+	</span>
 
-<ul class='mdl-dropdown__container mdl-menu mdl-js-menu mdl-js-ripple-effect' for={{_buttonId}}>
-	{{yield (hash
-	    option=(component "mdl-dropdown-option" dropdown=this)
-	)}}
-</ul>
+	<ul class='mdl-dropdown__container mdl-menu mdl-js-menu mdl-js-ripple-effect' for={{_buttonId}} style='overflow: auto; max-height: 10rem;'>
+		{{yield (hash
+		    option=(component "mdl-dropdown-option" dropdown=this)
+		)}}
+	</ul>
+</span>

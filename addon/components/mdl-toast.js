@@ -16,6 +16,8 @@ export default Ember.Component.extend({
 		if(this.get('toggle')){
 			const componentId = '#'+this.get('elementId');
 
+			console.log(document.querySelector(componentId).MaterialSnackbar);
+
 			document.querySelector(componentId).MaterialSnackbar.showSnackbar({message: this.get('message')});	
 		}		
   })

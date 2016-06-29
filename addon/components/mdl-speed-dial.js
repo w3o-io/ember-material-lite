@@ -41,8 +41,6 @@ export default Ember.Component.extend({
       rotationSpeed = 300,
       rotate = $btn.hasClass('mdl-speed-dial__main-fab--spin');
 
-      console.log('asd');
-
     if (isSpeedDialOptionsHidden) {
       $speedDialOptions.fadeIn('fast');
 
@@ -94,5 +92,9 @@ export default Ember.Component.extend({
     Ember.$('.mdl-speed-dial').mouseleave(this.closeFAB);    
     Ember.$('.mdl-speed-dial__tooltip--hidden').hide();
     Ember.$('.mdl-speed-dial_main-fab-icon--secondary').hide();
+  },
+
+  click() {
+    this.sendAction('action');
   }
 });

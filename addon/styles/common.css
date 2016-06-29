@@ -1,26 +1,57 @@
-.mdl-dropdown__height {
-	height: 60px !important;
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
-}
-
 .mdl-dropdown__arrow {
 	bottom: 30px !important;
 	left: 272px !important;
 }
 
 .mdl-dropdown__container {
-	width: 300px !important;
+	width: initial !important;
 }
 
 .background-red {
 	background-color: red;
 }
 
-.mdl-menu {
+/*.mdl-buttonsplit.mdl-menu {
+	top: 0rem !important;
+}
+
+.mdl-buttonsplit.mdl-menu__outline {
+	top: 0rem !important;
+}*/
+
+.mdl-dropdown.mdl-menu {
 	top: 2rem !important;
 }
 
-.mdl-menu__outline {
+.mdl-dropdown.mdl-menu__outline {
 	top: 2rem !important;
+}
+
+.mdl-select {
+  width: 100%;
+  padding: 8px;
+}
+
+.mdl-select.mdl-select--1-col-phone{
+  width: 25% !important;
+}
+
+.mdl-select.mdl-select--2-col-phone{
+  width: 50% !important;
+}
+
+.mdl-select.mdl-select--3-col-phone{
+  width: 75% !important;
+}
+
+.mdl-select.mdl-select--4-col-phone{
+  width: 100% !important;
+}
+
+.mdl-select > .mdl-textfield > .mdl-textfield__input {
+  cursor: default;
+}
+
+.mdl-select > .mdl-menu__container {
+  width: inherit !important;
 }
