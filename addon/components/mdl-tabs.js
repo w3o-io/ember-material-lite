@@ -21,6 +21,17 @@ export default BaseComponent.extend(ParentComponentSupport, RippleSupport, {
     }
   },
 
+  /*
+    Observer needed because composableChildren is not loaded yet on insertElement
+    Observer wait until composableChildren is fully populated and later show active tab content
+  */
+  composableChildrenObserver: Ember.observer('composableChildren', function(){
+    let [activeTab] = this.get('composableChildren').filter((x) => x.title === this.get('active'));
+    if (activeTab) {
+      activeTab.set('isActive', true);
+    }
+  }),
+
   actions: {
     tabClicked(tab) {
       let [activeTab] = this.get('composableChildren').filter((x) => x.title === this.get('active'));
