@@ -10,15 +10,20 @@ export default Ember.Component.extend({
 	classNames: ["mdl-js-snackbar", "mdl-snackbar"],
 
 	/*
+		Manually instantiate MaterialSnackbar script on insert element
+		Otherwise, MaterialSnackbar would not instantiated after destroyed
+	*/
+	didInsertElement() {
+    let mdltoast = new window.MaterialSnackbar(this.get('element'));
+    this.set('_mdlComponent', mdltoast);
+	},
+
+	/*
 		Toggle Observer to show Toast when toggle is true
 	*/
 	showToast: Ember.observer('toggle', function() {
 		if(this.get('toggle')){
-			const componentId = '#'+this.get('elementId');
-
-			console.log(document.querySelector(componentId).MaterialSnackbar);
-
-			document.querySelector(componentId).MaterialSnackbar.showSnackbar({message: this.get('message')});	
+			this.get('_mdlComponent').showSnackbar({message: this.get('message')});	
 		}		
   })
 });
