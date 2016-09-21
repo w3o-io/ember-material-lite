@@ -1,5 +1,9 @@
 {{#each records as |record|}}
 	<td data-title={{record.id}}>
-		{{{record.content}}}
+		{{#if (eq record.id 'Action')}}
+			{{yield}}
+		{{else}}
+			{{{record.content}}}
+		{{/if}}
 	</td>
 {{/each}}
