@@ -11,5 +11,12 @@ export default BaseComponent.extend({
   ],
   beforeMdlInit() {
     this.$('label.mdl-button').attr('for', this.get('_inputId'));
+  },
+  actions: {
+    focusOut: function(){
+      if(this.get('action')){
+        this.sendAction('action', this);
+      }
+    }
   }
 });
