@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 	/*
 		Determine input to be date type or datetime format
 	*/
-	type: 'date',
+	type: 'DD-MM-YYYY',
 
 	/*
 		Normalize Value to string format.
@@ -21,10 +21,10 @@ export default Ember.Component.extend({
 		var stringifiedDate;
 
 		if(!Ember.isEmpty(this.get('value'))){
-			if(this.get('type') === 'date'){
+			if(this.get('type') === 'DD-MM-YYYY'){
 				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2);	
 			}
-			else if(this.get('type') === 'datetime-local'){
+			else if(this.get('type') === 'DD-MM-YYYY HH:mm:ss'){
 				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2)+'T'+("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2);	
 			}
 		}		
@@ -39,7 +39,7 @@ export default Ember.Component.extend({
 		normalizeValue() {
 			var parsedDate = new Date(this.get('stringValue'));
 
-			if(this.get('type') === 'datetime-local'){
+			if(this.get('type') === 'DD-MM-YYYY HH:mm:ss'){
 				parsedDate.setHours(parsedDate.getHours() + (parsedDate.getTimezoneOffset()/60));	
 			}			
 

@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 	/*
 	 By default passed object type is assumed date, used for normalization
 	*/
-	type: 'date',
+	type: 'HH:mm:ss',
 	
 	/*
 	 Declare Date Container, used when passed value is date type
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
 		if(typeof this.get('value').getMonth === 'function'){
 			this.set('stringValue', ("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
 			this.set('dateContainer', this.get('value'));
-			this.set('type', 'date');
+			this.set('type', 'HH:mm:ss');
 		}
 		else if(this.get('hhmmRegEx').test(this.get('value'))){
 			this.set('stringValue', this.get('value'));
@@ -54,7 +54,7 @@ export default Ember.Component.extend({
   		If passed object is string or doesn't exist, set value directly from string value and store as string
 		*/
 		normalizeValue() {
-			if(this.get('type') === 'date'){
+			if(this.get('type') === 'HH:mm:ss'){
 				this.get('dateContainer').setHours(parseInt(this.get('stringValue').substring(0,2)));
 				this.get('dateContainer').setMinutes(parseInt(this.get('stringValue').substring(3,5)));
 				this.set('value', new Date(this.get('dateContainer')));
