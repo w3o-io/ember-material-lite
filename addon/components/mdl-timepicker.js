@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 	/*
 	 By default passed object type is assumed date, used for normalization
 	*/
-	type: 'HH:mm:ss',
+	type: 'date',
 	
 	/*
 	 Declare Date Container, used when passed value is date type
@@ -32,18 +32,20 @@ export default Ember.Component.extend({
   		If passed object is string and followed the correct HH:mm format, directly assign object to string value
   		If not available in other option, set string value to null
 		*/
-		if(typeof this.get('value').getMonth === 'function'){
-			this.set('stringValue', ("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
-			this.set('dateContainer', this.get('value'));
-			this.set('type', 'HH:mm:ss');
-		}
-		else if(this.get('hhmmRegEx').test(this.get('value'))){
-			this.set('stringValue', this.get('value'));
-			this.set('type', 'string');
-		}
-		else{
-			this.set('stringValue', null);
-			this.set('type', 'string');
+		if(!Ember.isEmpty(this.get('value'))){
+			if(typeof this.get('value').getMonth === 'function'){
+				this.set('stringValue', ("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
+				this.set('dateContainer', this.get('value'));
+				this.set('type', 'date');
+			}
+			else if(this.get('hhmmRegEx').test(this.get('value'))){
+				this.set('stringValue', this.get('value'));
+				this.set('type', 'string');
+			}
+			else{
+				this.set('stringValue', null);
+				this.set('type', 'string');
+			}
 		}
 	},
 
@@ -54,7 +56,7 @@ export default Ember.Component.extend({
   		If passed object is string or doesn't exist, set value directly from string value and store as string
 		*/
 		normalizeValue() {
-			if(this.get('type') === 'HH:mm:ss'){
+			if(this.get('type') === 'date'){
 				this.get('dateContainer').setHours(parseInt(this.get('stringValue').substring(0,2)));
 				this.get('dateContainer').setMinutes(parseInt(this.get('stringValue').substring(3,5)));
 				this.set('value', new Date(this.get('dateContainer')));
