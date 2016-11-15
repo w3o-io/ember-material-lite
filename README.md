@@ -23,6 +23,8 @@ ember install:addon ember-material-lite
 ember install ember-material-lite
 ```
 
+[DON'T FORGET TO INCLUDE material-design-lite: 1.2.1 on your bower.json]
+
 ### Without SASS
 
 This addon can be used without SASS (relying on pure CSS for styles). If you choose this path, you'll need to alter your app slightly.
