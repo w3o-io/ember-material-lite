@@ -28,7 +28,7 @@ export default BaseComponent.extend({
     this.beforeMdlInit();
     let mdlTextfield = new window.MaterialTextfield(this.get('element'));
     this.set('_mdlComponent', mdlTextfield);
-    this._checkValue();
+    // this._checkValue();
   },
   /*
    Observes Error Message and run _setValidity once
@@ -61,18 +61,18 @@ export default BaseComponent.extend({
     If there is value, set div class as filled
     Else, set div class as default
   */
-  _checkValue: function() {
-    let mdlComponent = this.get('_mdlComponent');
-    let value = this.get('value');
+  // _checkValue: function() {
+  //   let mdlComponent = this.get('_mdlComponent');
+  //   let value = this.get('value');
 
-    this.set('errorMessage', null);
+  //   this.set('errorMessage', null);
     
-    if (isPresent(value)) {
-      Ember.$('#' + mdlComponent.element_.id).children().next().next().css('visibility', 'hidden');
-      Ember.$('#' + mdlComponent.element_.id).removeClass('is-invalid');
-      Ember.$('#' + mdlComponent.element_.id).addClass('is-dirty');
-    } else {
-      Ember.$('#' + mdlComponent.element_.id).removeClass('is-invalid');
-    }
-  }.observes('value')
+  //   if (isPresent(value)) {
+  //     Ember.$('#' + mdlComponent.element_.id).children().next().next().css('visibility', 'hidden');
+  //     Ember.$('#' + mdlComponent.element_.id).removeClass('is-invalid');
+  //     Ember.$('#' + mdlComponent.element_.id).addClass('is-dirty');
+  //   } else {
+  //     Ember.$('#' + mdlComponent.element_.id).removeClass('is-invalid');
+  //   }
+  // }.observes('value')
 });
