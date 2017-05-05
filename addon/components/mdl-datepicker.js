@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import layout from '../templates/components/mdl-datepicker';
 
 export default Ember.Component.extend({
@@ -43,7 +44,7 @@ export default Ember.Component.extend({
 				parsedDate.setHours(parsedDate.getHours() + (parsedDate.getTimezoneOffset()/60));	
 			}			
 
-			this.set('value', parsedDate);
+			this.set('value', moment(parsedDate).format(this.get('format')));
 		}
 	}
 });
