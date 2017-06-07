@@ -13,5 +13,9 @@ export default Ember.Component.extend(ChildComponentSupport, {
   isActive: false,
   dasherizedTitle: computed('title', function() {
     return dasherize(this.get('title'));
-  })
+  }),
+  init() {
+    this._super();
+    this.set('elementId', this.get('title').toLowerCase());
+  }
 });
