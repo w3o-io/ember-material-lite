@@ -16,6 +16,6 @@ export default Ember.Component.extend(ChildComponentSupport, {
   }),
   init() {
     this._super();
-    this.set('elementId', this.get('title').toLowerCase());
+    this.set('elementId', this.get('title').replace(/\s+/g, '-').toLowerCase());
   }
 });
