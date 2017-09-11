@@ -21,10 +21,10 @@ export default Ember.Component.extend({
 		if(!Ember.isEmpty(this.get('content')) && table.get('headers')){
 			table.get('headers').forEach(function(header){
 				if(typeof self.get('content').get === 'function'){
-					records.pushObject({id: header.label, content: self.get('content').get(header.id)});
+					records.pushObject({id: header.id, label: header.label, content: self.get('content').get(header.id)});
 				}
 				else{
-					records.pushObject({id: header.label, content: self.get('content')[header.id]});
+					records.pushObject({id: header.id, label: header.label, content: self.get('content')[header.id]});
 				}
 			});
 		}
