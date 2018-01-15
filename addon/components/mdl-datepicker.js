@@ -24,14 +24,14 @@ export default Ember.Component.extend({
 		if(!Ember.isEmpty(this.get('value'))){
 			/*Somehow, this.get(value) is a String, need to convert it to a Date because .getFullYear(), getMonth(), etc will be called on it*/
 			if(typeof this.get('value')) {
-				this.set('value', new Date(this.get('value')));
+				stringifiedDate = new Date(this.get('value'));
 			}
 
 			if(this.get('type') === 'date'){
-				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2);	
+				stringifiedDate = stringifiedDate.getFullYear() + '-' + ("0" + (stringifiedDate.getMonth() + 1)).slice(-2)+ '-' + ("0" + stringifiedDate.getDate()).slice(-2);	
 			}
 			else if(this.get('type') === 'datetime-local'){
-				stringifiedDate = this.get('value').getFullYear() + '-' + ("0" + (this.get('value').getMonth() + 1)).slice(-2)+ '-' + ("0" + this.get('value').getDate()).slice(-2)+'T'+("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2);	
+				stringifiedDate = stringifiedDate.getFullYear() + '-' + ("0" + (stringifiedDate.getMonth() + 1)).slice(-2)+ '-' + ("0" + stringifiedDate.getDate()).slice(-2)+'T'+("0" + stringifiedDate.getHours()).slice(-2) + ':' + ("0" + stringifiedDate.getMinutes()).slice(-2);	
 			}
 		}
 
