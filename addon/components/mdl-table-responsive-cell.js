@@ -21,12 +21,20 @@ export default Ember.Component.extend({
 		if(!Ember.isEmpty(this.get('content')) && table.get('headers')){
 			table.get('headers').forEach(function(header){
 				if(typeof self.get('content').get === 'function'){
+					let objRecord = {id: header.id, label: header.label, content: null};
+
 					if(header.relationColumnName){
-						records.pushObject({id: header.id, label: header.label, content: self.get('content')[header.id].get(header.relationColumnName)});
+						objRecord.content = self.get('content')[header.id].get(header.relationColumnName);
 					}
 					else{
-						records.pushObject({id: header.id, label: header.label, content: self.get('content').get(header.id)});
+						objRecord.content = self.get('content').get(header.id);
 					}
+
+					if (typeof objRecord.content === 'boolean') {
+						objRecord.isBoolean = true;
+					}
+
+					records.pushObject(objRecord);
 				}
 				else{
 					records.pushObject({id: header.id, label: header.label, content: self.get('content')[header.id]});

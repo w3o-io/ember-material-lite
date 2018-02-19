@@ -3,7 +3,11 @@
 		{{#if (eq record.id 'Action')}}
 			{{yield}}
 		{{else}}
-			{{{record.content}}}
+			{{#if record.isBoolean}}
+				{{input type="checkbox" class="mdl-checkbox__input" checked=record.content disabled=true}}
+			{{else}}
+				{{{record.content}}}
+			{{/if}}
 		{{/if}}
 	</td>
 {{/each}}
