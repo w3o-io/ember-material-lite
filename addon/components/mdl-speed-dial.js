@@ -6,6 +6,7 @@ export default Ember.Component.extend({
 		Inject imported template handlebars to component usinglayout 
 	*/
   layout,
+  counter: 0,
 
   /*
     Class Name for component wrapper
@@ -84,17 +85,37 @@ export default Ember.Component.extend({
     }
   },
 
+  setCounterToZero() {
+    this.set('counter', 0);
+  },
+
   /*
     Apply jQuery behaviors on element insertion
   */
   didInsertElement() {
+    var _this = this;
     Ember.$('.mdl-speed-dial__main-fab').mouseenter(this.openFAB);
-    Ember.$('.mdl-speed-dial').mouseleave(this.closeFAB);    
+    Ember.$('.mdl-speed-dial__main-fab').mouseenter(function() {
+      _this.set('counter', 0);
+    });
+    Ember.$('.mdl-speed-dial').mouseleave(this.closeFAB);
+    Ember.$('.mdl-speed-dial').mouseleave(function() {
+      _this.set('counter', 0);
+    });
     Ember.$('.mdl-speed-dial__tooltip--hidden').hide();
     Ember.$('.mdl-speed-dial_main-fab-icon--secondary').hide();
   },
 
   click() {
+    if (this.get('counter') > 0) {
+      if (Ember.$('.mdl-speed-dial__options').css('display') === 'block') {
+        Ember.$('.mdl-speed-dial__options').css('display', 'none');
+      }
+      else {
+        Ember.$('.mdl-speed-dial__options').css('display', 'block');
+      }
+    }
+    this.set('counter', this.get('counter')+1);
     this.sendAction('action');
   }
 });
