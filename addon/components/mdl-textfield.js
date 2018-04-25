@@ -17,6 +17,11 @@ export default BaseComponent.extend({
       if(this.get('action')){
         this.sendAction('action', this);
       }
+    },
+    keyUp: function () {
+      if (this.get('key-up')) {
+        this.sendAction('key-up', this);
+      }
     }
   }
 });
