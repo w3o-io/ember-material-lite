@@ -40,6 +40,10 @@ export default BaseComponent.extend(ParentComponentSupport, RippleSupport, {
       }
       this.set('active', tab.get('title'));
       tab.set('isActive', true);
+
+      if (tab.get('action')) {
+        tab.sendAction('action', tab);
+      }
     }
   }
 });
