@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
 import layout from '../templates/components/mdl-speed-dial';
 
-export default Ember.Component.extend({
+export default Component.extend({
 	/*
 		Inject imported template handlebars to component usinglayout 
 	*/
@@ -94,25 +95,25 @@ export default Ember.Component.extend({
   */
   didInsertElement() {
     var _this = this;
-    Ember.$('.mdl-speed-dial__main-fab').mouseenter(this.openFAB);
-    Ember.$('.mdl-speed-dial__main-fab').mouseenter(function() {
+    $('.mdl-speed-dial__main-fab').mouseenter(this.openFAB);
+    $('.mdl-speed-dial__main-fab').mouseenter(function() {
       _this.set('counter', 0);
     });
-    Ember.$('.mdl-speed-dial').mouseleave(this.closeFAB);
-    Ember.$('.mdl-speed-dial').mouseleave(function() {
+    $('.mdl-speed-dial').mouseleave(this.closeFAB);
+    $('.mdl-speed-dial').mouseleave(function() {
       _this.set('counter', 0);
     });
-    Ember.$('.mdl-speed-dial__tooltip--hidden').hide();
-    Ember.$('.mdl-speed-dial_main-fab-icon--secondary').hide();
+    $('.mdl-speed-dial__tooltip--hidden').hide();
+    $('.mdl-speed-dial_main-fab-icon--secondary').hide();
   },
 
   click() {
     if (this.get('counter') > 0) {
-      if (Ember.$('.mdl-speed-dial__options').css('display') === 'block') {
-        Ember.$('.mdl-speed-dial__options').css('display', 'none');
+      if ($('.mdl-speed-dial__options').css('display') === 'block') {
+        $('.mdl-speed-dial__options').css('display', 'none');
       }
       else {
-        Ember.$('.mdl-speed-dial__options').css('display', 'block');
+        $('.mdl-speed-dial__options').css('display', 'block');
       }
     }
     this.set('counter', this.get('counter')+1);

@@ -1,12 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { isPresent } from '@ember/utils';
+import { observer, computed } from '@ember/object';
+import { run } from '@ember/runloop';
 import BaseComponent from './-base-toplevel-component';
-
-const {
-  computed,
-  isPresent,
-  observer,
-  run
-} = Ember;
 
 export default BaseComponent.extend({
   primaryClassName: 'textfield',
@@ -50,8 +46,8 @@ export default BaseComponent.extend({
 
     if (isPresent(errorMessage)) {
       mdlComponent.input_.setCustomValidity(errorMessage.toString());
-      Ember.$('#' + mdlComponent.element_.id).children().next().next().css('visibility', 'visible');
-      Ember.$('#' + mdlComponent.element_.id).addClass('is-invalid');
+      $('#' + mdlComponent.element_.id).children().next().next().css('visibility', 'visible');
+      $('#' + mdlComponent.element_.id).addClass('is-invalid');
     } else {
       mdlComponent.input_.setCustomValidity('');
     }

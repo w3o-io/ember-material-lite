@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import ParentComponentSupport from 'ember-composability/mixins/parent-component-support';
 import layout from '../templates/components/mdl-dropdown';
-const { computed } = Ember;
 
-export default Ember.Component.extend(ParentComponentSupport, {
+export default Component.extend(ParentComponentSupport, {
 	/*
 		Inject imported template handlebars to component usinglayout 
 	*/
@@ -33,8 +34,8 @@ export default Ember.Component.extend(ParentComponentSupport, {
   /*
 		Declare options object to store option associated on mdl-dropdown-option
   */
-  options: Ember.computed(function() {
-    return Ember.A();
+  options: computed(function() {
+    return A();
   }),
 
   /*

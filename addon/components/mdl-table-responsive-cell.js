@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import MdlTableResponsive from './mdl-table-responsive';
 import layout from '../templates/components/mdl-table-responsive-cell';
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	/*
 		Set Tagname of Component wrapper as <tr> element
@@ -13,12 +16,12 @@ export default Ember.Component.extend({
 		Populate cell's column with properties of passed object. Property names are gotten from parent table headers.
 		Provide exception handling when object has setter/getter or not.
 	*/
-	records: Ember.computed('content', 'headers', function() {
+	records: computed('content', 'headers', function() {
 		var self = this,
 			table = this.get('table'),
-			records = Ember.A();
+			records = A();
 
-		if(!Ember.isEmpty(this.get('content')) && table.get('headers')){
+		if(!isEmpty(this.get('content')) && table.get('headers')){
 			table.get('headers').forEach(function(header){
 				if(typeof self.get('content').get === 'function'){
 					let objRecord = {id: header.id, label: header.label, content: null};
@@ -48,7 +51,7 @@ export default Ember.Component.extend({
 	/*
 		Connect cell with parent table
 	*/
-  table: Ember.computed(function() {
+  table: computed(function() {
     return this.nearestOfType(MdlTableResponsive);
   }),
 

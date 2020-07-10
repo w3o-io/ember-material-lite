@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { empty } from '@ember/object/computed';
 import computed from 'ember-new-computed';
 
-const { computed: { empty } } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['x-example', 'mdl-cell'],
   classNameBindings: ['colClass'],
   cols: 4,

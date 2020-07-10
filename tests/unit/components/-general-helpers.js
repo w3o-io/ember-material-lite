@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 
 export function componentIsDisabled(assert, ctxt, selector) {
   const component = ctxt.subject();
@@ -7,7 +7,7 @@ export function componentIsDisabled(assert, ctxt, selector) {
   ctxt.render();
 
   assert.ok(!component.$(selector || '').attr('disabled'), 'Component is not initially disabled');
-  Ember.run(() => {
+  run(() => {
     component.set('disabled', true);
   });
   assert.ok(component.$(selector || '').attr('disabled'), 'Component is now disabled');
