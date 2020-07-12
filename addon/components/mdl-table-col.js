@@ -6,7 +6,7 @@ import MdlTable from './mdl-table';
 import layout from '../templates/components/mdl-table-col';
 
 export default BaseComponent.extend(ChildComponentSupport, {
-  _parentComponentTypes: new A([MdlTable]),
+  _parentComponentTypes: A([MdlTable]),
   tagName: 'td',
   layout,
   shouldRegisterToParent(parentComponent) {

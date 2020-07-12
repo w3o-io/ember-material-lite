@@ -34,7 +34,7 @@ export default BaseChildComponent.extend(ChildComponentSupport, {
 
   didInsertElement() {
     this._super.apply(this, arguments);
-    scheduleOnce('afterRender', this, 'registerWithMdlDropdown');
+    scheduleOnce('afterRender', this, this.registerWithMdlDropdown);
   },
 
   /*

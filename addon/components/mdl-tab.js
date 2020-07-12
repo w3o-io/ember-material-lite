@@ -8,7 +8,7 @@ import layout from '../templates/components/mdl-tab';
 
 export default Component.extend(ChildComponentSupport, {
   layout,
-  _parentComponentTypes: new A([MdlTabs]),
+  _parentComponentTypes: A([MdlTabs]),
   classNames: ['mdl-tabs__panel'],
   classNameBindings: ['isActive:is-active'],
   isActive: false,
