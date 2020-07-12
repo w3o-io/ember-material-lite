@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { observer } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/components/mdl-toast';
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 
 	/*
@@ -21,7 +22,7 @@ export default Ember.Component.extend({
 	/*
 		Toggle Observer to show Toast when toggle is true
 	*/
-	showToast: Ember.observer('toggle', function() {
+	showToast: observer('toggle', function() {
 		if(this.get('toggle')){
 			this.get('_mdlComponent').showSnackbar({message: this.get('message')});	
 		}		

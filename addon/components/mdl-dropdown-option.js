@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
+import { A } from '@ember/array';
 import ChildComponentSupport from 'ember-composability/mixins/child-component-support';
 import BaseChildComponent from './-base-child-component';
 import MdlDropdown from './mdl-dropdown';
@@ -18,7 +20,7 @@ export default BaseChildComponent.extend(ChildComponentSupport, {
   /*
 		Determine parent component type
   */
-  _parentComponentTypes: Ember.A([MdlDropdown]),
+  _parentComponentTypes: A([MdlDropdown]),
   
   /*
 		Append delimiter to className (prefix taken from parent component)
@@ -32,13 +34,13 @@ export default BaseChildComponent.extend(ChildComponentSupport, {
 
   didInsertElement() {
     this._super.apply(this, arguments);
-    Ember.run.scheduleOnce('afterRender', this, 'registerWithMdlDropdown');
+    scheduleOnce('afterRender', this, this.registerWithMdlDropdown);
   },
 
   /*
 		Get parent component (mdl-dropdown) object
   */
-  dropdown: Ember.computed(function() {
+  dropdown: computed(function() {
     return this.nearestOfType(MdlDropdown);
   }),
 

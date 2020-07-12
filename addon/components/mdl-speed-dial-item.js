@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
 import layout from '../templates/components/mdl-speed-dial-item';
 
-export default Ember.Component.extend({
+export default Component.extend({
 	/*
 		Inject imported template handlebars to component usinglayout 
 	*/
@@ -30,7 +31,7 @@ export default Ember.Component.extend({
     Apply jQuery behaviors on element insertion
   */
   didInsertElement(){
-    Ember.$('.mdl-speed-dial__option').hover(this.showFABTooltip, this.hideFABTooltip);
+    $('.mdl-speed-dial__option').hover(this.showFABTooltip, this.hideFABTooltip);
   },
 
   /*

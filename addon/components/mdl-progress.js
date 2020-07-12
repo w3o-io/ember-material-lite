@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { empty } from '@ember/object/computed';
 import BaseComponent from './-base-toplevel-component';
 import layout from '../templates/components/mdl-progress';
-const { computed: { empty } } = Ember;
-const { computed } = Ember;
 
 export default BaseComponent.extend({
   primaryClassName: 'progress',

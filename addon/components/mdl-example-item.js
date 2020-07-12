@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import MdlExample from './mdl-example';
 import layout from '../templates/components/mdl-example-item';
 
-export default Ember.Component.extend({
+export default Component.extend({
 	layout,
 	tagName: 'span',
 
@@ -10,7 +11,7 @@ export default Ember.Component.extend({
 		console.log(this.get('example').get('title'));
 	},
 
-	example: Ember.computed(function() {
+	example: computed(function() {
 	    return this.nearestOfType(MdlExample);
 	}),
 });

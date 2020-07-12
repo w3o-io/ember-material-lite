@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Component from '@ember/component';
 import layout from '../templates/components/mdl-timepicker';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 	/*
 	 Set wrapper classes
@@ -32,7 +33,7 @@ export default Ember.Component.extend({
   		If passed object is string and followed the correct HH:mm format, directly assign object to string value
   		If not available in other option, set string value to null
 		*/
-		if(!Ember.isEmpty(this.get('value'))){
+		if(!isEmpty(this.get('value'))){
 			if(typeof this.get('value').getMonth === 'function'){
 				this.set('stringValue', ("0" + this.get('value').getHours()).slice(-2) + ':' + ("0" + this.get('value').getMinutes()).slice(-2));
 				this.set('dateContainer', this.get('value'));

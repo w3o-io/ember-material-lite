@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Component from '@ember/component';
 import moment from 'moment';
 import layout from '../templates/components/mdl-datepicker';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   /*
   	Set wrapper classes
@@ -21,7 +22,7 @@ export default Ember.Component.extend({
 	didReceiveAttrs() {
 		var stringifiedDate;
 
-		if(!Ember.isEmpty(this.get('value'))){
+		if(!isEmpty(this.get('value'))){
 			/*Somehow, this.get(value) is a String, need to convert it to a Date because .getFullYear(), getMonth(), etc will be called on it*/
 			if(typeof this.get('value')) {
 				stringifiedDate = new Date(this.get('value'));
